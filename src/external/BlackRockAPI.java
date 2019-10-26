@@ -1,6 +1,7 @@
 package external;
 import java.net.*;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -8,25 +9,8 @@ import java.io.*;
 public class BlackRockAPI {
 	public JSONObject readData(String positions) throws Exception {
         String urlString = "https://www.blackrock.com/tools/hackathon/portfolio-analysis";
-        urlString="https://www.blackrock.com/tools/hackathon/portfolio-analysis?calculateExposures=true&calculatePerfomance=true&calculateRisk=true&&positions=AAPL~90%7CWORK~10&returnsType=MONTHLY";
-//        urlString += "?positions=" + positions;
-//        urlString+="&";
-//        urlString += "?startDate=" + "20151212";
-//        urlString += "?endDate=" + "20151220";
-//        urlString += "?currency=" + "USD";
-//        urlString += "?calculateRisk=" + "true";
-//        urlString += "?calculateExposures=" + "true";
-//        urlString+="&";
-//        urlString += "?calculatePerfomance=" + "true";
-//       // urlString += "?calculateExpectedReturns=" + "true";
-//       // urlString += "?includeReturnsMap=" + "true";
-//        //urlString+="&";
-//        //urlString += "?returnsType=" + "MONTHLY";
-//        urlString+="&";
-//        urlString += "?positions=" + positions;
-        //urlString += "?positions=" + positions;
-        
-        //urlString += "?timeout=" + "10000";
+        urlString="https://www.blackrock.com/tools/hackathon/portfolio-analysis?calculateExposures=true&calculatePerfomance=true&calculateRisk=true&positions=AAPL~90%7CWORK~10";
+
         
         URL url = new URL(urlString);
         URLConnection urlConnection = url.openConnection();
@@ -37,10 +21,16 @@ public class BlackRockAPI {
         while ((inputLine = bufferedReader.readLine()) != null) {
         	//p.write(inputLine);
         	responseBody.append(inputLine);
-            System.out.println(inputLine);
+            //System.out.println(inputLine);
         }
         bufferedReader.close();
         JSONObject obj = new JSONObject(responseBody.toString());
+        
+        JSONObject resultMap = obj.getJSONObject("resultMap");
+        
+        JSONArray PORTFOLIOS = resultMap.getJSONArray("PORTFOLIOS");
+        System.err.print(PORTFOLIOS.length());
+       
         return obj;
         
     }
@@ -48,6 +38,9 @@ public class BlackRockAPI {
     public static void main(String[] args) throws Exception {
     	BlackRockAPI apiReader = new BlackRockAPI();
         apiReader.readData("BLK~100");
+    }
+    private static void getInfo() {
+    	
     }
     
     
