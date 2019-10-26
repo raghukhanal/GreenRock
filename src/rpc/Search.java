@@ -2,6 +2,8 @@ package rpc;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,10 +42,25 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String positions = request.getParameter("positions");
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		int start = 0;
+		int curr = 0;
+		List<String> str = new ArrayList<>();
+		while(curr<positions.length()) {
+			char c = positions.charAt(curr);
+			if(!Character.isDigit(c) && !Character.isLetter(c) && c!='~') {
+				str.add(positions.substring(start,curr));
+				curr++;
+				start = curr;
+			}else {
+				curr++;
+			}
+		}
+		
+		str.add(positions.substring(start));
 		try {
-			positions =  URLEncoder.encode(positions, "UTF-8");
-			JSONObject obj = api.readData(positions);
+			//positions =  URLEncoder.encode(positions, "UTF-8");
+			JSONObject obj = api.readData(str);
 			writeJsonObject(response,obj);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
