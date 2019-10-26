@@ -8,7 +8,7 @@ import java.io.*;
 public class BlackRockAPI {
 	public JSONObject readData(String positions) throws Exception {
         String urlString = "https://www.blackrock.com/tools/hackathon/portfolio-analysis";
-        urlString="https://www.blackrock.com/tools/hackathon/portfolio-analysis?calculateExposures=true&calculatePerfomance=true&calculateRisk=true&positions=AAPL~90%7CWORK~10";
+        urlString="https://www.blackrock.com/tools/hackathon/portfolio-analysis?calculateExposures=true&calculatePerfomance=true&calculateRisk=true&&positions=AAPL~90%7CWORK~10&returnsType=MONTHLY";
 //        urlString += "?positions=" + positions;
 //        urlString+="&";
 //        urlString += "?startDate=" + "20151212";
@@ -32,8 +32,6 @@ public class BlackRockAPI {
         URLConnection urlConnection = url.openConnection();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
         String inputLine;
-        //File file = new File("/Users/qinchen/Codes/GreenRock/ex.txt");
-        //PrintWriter p = new PrintWriter(file);
         
         StringBuilder responseBody = new StringBuilder();
         while ((inputLine = bufferedReader.readLine()) != null) {
