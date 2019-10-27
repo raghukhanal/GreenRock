@@ -22,9 +22,23 @@ public class TrainedANN {
 	
 	 private static double sse;
 	 
-	 private static NeuralNet ANN = null;
+	 private static  NeuralNet ANN;
 	 
-	 private TrainedANN() {}
+	 public TrainedANN(){
+		 try {
+			 ANN= readObj();
+		 }catch(Exception e) {
+			 ANN= new NeuralNet();
+			 ANN = train(ANN);
+			 try {
+				writeObj(ANN);
+			 } catch (Exception e1) {
+				e1.printStackTrace();
+			 }
+		 }
+		 
+	 }
+	 
 	 
 	 public static NeuralNet getANN() {
 		 try {
@@ -61,7 +75,7 @@ public class TrainedANN {
 	  }
 	 
 	
-	 private static void train(NeuralNet ANN){
+	 private static NeuralNet train(NeuralNet ANN){
 
 		 try {
 			readDate(ANN);
@@ -70,6 +84,7 @@ public class TrainedANN {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return ANN;
 		 
 	 }
 	 private static void runANN(NeuralNet ANN) throws IOException {

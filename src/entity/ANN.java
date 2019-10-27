@@ -4,9 +4,13 @@ import ann.NeuralNet;
 
 public class ANN {
 	
-	private static NeuralNet ann = TrainedANN().getANN();
+	public static NeuralNet ann = TrainedANN().getANN();
 	
-	public static double eval(double PE,double PB) {
+	public ANN(){
+		
+	}
+	
+	public double eval(double PE,double PB) {
 		
 		double one = 0;
 		
@@ -42,11 +46,11 @@ public class ANN {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public static void main(String[] args) {
-		eval(26.55,10.13);
-		eval(4.23,0.38);
-		eval(20.94,11.58);
-	}
+//	public static void main(String[] args) {
+//		eval(26.55,10.13);
+//		eval(4.23,0.38);
+//		eval(20.94,11.58);
+//	}
 	public static double calculateOutput(double netInput) {
         return 1.5 / (1+Math.exp(-netInput));
 		//return 3 / (1 + Math.exp(-2 * netInput)) - 1;
