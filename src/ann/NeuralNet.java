@@ -17,10 +17,7 @@ package ann;
 
 import java.io.Serializable;
 
-/**
- *
- * @author cld028
- */
+
 public class NeuralNet implements Serializable {
 
     private InputLayer inputLayer;
