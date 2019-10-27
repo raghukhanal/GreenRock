@@ -3,30 +3,67 @@
 	
 	function init() {
 	    
-	    document.querySelector('').addEventListener('click', calculateMoney);
-	    document.querySelector('').addEventListener('click', loadNearbyItems);
-	    document.querySelector('').addEventListener('click', loadFavoriteItems);
-	    document.querySelector('').addEventListener('click', loadRecommendedItems);
+	    document.querySelector('#submit').addEventListener('click', calculateMoney);
+	    
+	    //document.getElementById('#e1').addEventListener('click', calculateMoney);
+	   
+//	    document.querySelector('').addEventListener('click', loadFavoriteItems);
+//	    document.querySelector('').addEventListener('click', loadRecommendedItems);
 	    
 	  }
 	
 	
 	function calculateMoney(){
-		console.log("calcuate money");
+		showMessage('Calculating Results');
+		
+//		inputvalue
+
+		showMessage('Calculating Results');
+	    //input
+	    var inputvalue = document.getElementById("inputvalue");
+	    var positions = document.getElementById("positions");
+	    var date = document.getElementById("date");
 		// The request parameters
 	    var url = './search';
-	    var params = 'user_id=' + user_id + '&lat=' + lat + '&lon=' + lng;
+	    var params = "positions="+positions;
 	    var data = null;
+
 	    
-	 // display loading message
-	    showMessage('Calculating Results');
+	    //ajax
+	    ajax('POST', url, data, 
+	     function(res) {
+	    	console.log(res);
+	      var result = JSON.parse(res);
+	      if ('level' in result) {
+	        var l = result.level;
+	        
+	      } else {
+	        console.warn('Getting location by IP failed.');
+	      }
+	      //loadNearbyItems();
+	      money.placeholder=l;
+	    });
+	    
+	    
+	    //output
+	    var money = document.getElementById("displayProf");
+	   
+	    money.placeholder="hahahah";
+
 	}
 	
 	function showMessage(msg) {
+		 var money = document.getElementById("displayProf");
+		   
+		 money.placeholder="Calculating...";
 	    //var itemList = document.querySelector('#item-list');
 //	    itemList.innerHTML = '<p class="notice"><i class="fa fa-spinner fa-spin"></i> ' +
 //	      msg + '</p>';
 		
+	}
+	
+	function showeval(){
+		window.alert("calcuate money");
 	}
 
 	

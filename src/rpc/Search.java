@@ -18,7 +18,7 @@ import ann.NeuralNet;
 import external.BlackRockAPI;
 
 import ann.TrainedANN;
-import ann.TrainedANN;
+
 
 
 /**
@@ -55,6 +55,9 @@ public class Search extends HttpServlet {
 		int start = 0;
 		int curr = 0;
 		List<String> str = new ArrayList<>();
+//		for(String s:positions.split(" ")) {
+//			str.add(s);
+//		}
 		while(curr<positions.length()) {
 			char c = positions.charAt(curr);
 			if(!Character.isDigit(c) && !Character.isLetter(c) && c!='~') {
@@ -83,13 +86,42 @@ public class Search extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+//		// TODO Auto-generated method stub
 		doGet(request, response);
 		//System.out.print(ANN.eval(2.4,1.0));
 		
 		
 		String position = request.getParameter("position");
 		
+//		String positions = request.getParameter("positions");
+//		
+//		
+//		int start = 0;
+//		int curr = 0;
+//		List<String> str = new ArrayList<>();
+////		for(String s:positions.split(" ")) {
+////			str.add(s);
+////		}
+//		while(curr<positions.length()) {
+//			char c = positions.charAt(curr);
+//			if(!Character.isDigit(c) && !Character.isLetter(c) && c!='~') {
+//				str.add(positions.substring(start,curr));
+//				curr++;
+//				start = curr;
+//			}else {
+//				curr++;
+//			}
+//		}
+//		
+//		str.add(positions.substring(start));
+//		try {
+//			//positions =  URLEncoder.encode(positions, "UTF-8");
+//			JSONObject obj = api.readData(str);
+//			writeJsonObject(response,obj);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	public static void writeJsonObject(HttpServletResponse response, JSONObject obj) throws IOException {	

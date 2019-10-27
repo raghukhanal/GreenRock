@@ -46,15 +46,22 @@ public class BlackRockAPI {
         Double twelveMonthTrailingYield = analyticsMap.getJSONObject("twelveMonthTrailingYield").getDouble("value");
         Double returnOnAssets= analyticsMap.getJSONObject("returnOnAssets").getDouble("value");
         Double pbRatio = analyticsMap.getJSONObject("pbRatio").getDouble("value");
+        
+        JSONObject returnType = new JSONObject();
+        
 
 
         JSONObject returnmap = returns.getJSONObject("returnsMap");
         JSONObject userdate = returnmap.getJSONObject("20190807");
         double level = userdate.getDouble("level");
+        
+        returnType.put("peRatio", peRatio);
+        returnType.put("pbRatio", pbRatio);
+        returnType.put("level", level);
 
         //System.err.print(d);
        
-        return analyticsMap;
+        return returnType;
     }
 
     public static void main(String[] args) throws Exception {
