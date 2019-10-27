@@ -56,9 +56,7 @@ public class Search extends HttpServlet {
 		int start = 0;
 		int curr = 0;
 		List<String> str = new ArrayList<>();
-//		for(String s:positions.split(" ")) {
-//			str.add(s);
-//		}
+
 		while(curr<positions.length()) {
 			char c = positions.charAt(curr);
 			if(!Character.isDigit(c) && !Character.isLetter(c) && c!='~') {
@@ -73,8 +71,13 @@ public class Search extends HttpServlet {
 		str.add(positions.substring(start));
 		try {
 			//String date = "20190807";
+			JSONObject Jan = api.readData(str, "20190101");
 			JSONObject obj = api.readData(str,date);
-			writeJsonObject(response,obj);
+			double jan = Jan.getDouble("level");
+			double today = obj.getDouble("level");
+			JSONObject result = new JSONObject();
+			result.put("level", today-jan);
+			writeJsonObject(response,result);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -105,7 +108,9 @@ public class Search extends HttpServlet {
 			
 			JSONObject result = new JSONObject();
 			//{value:over/under}
-			String v = ANN.eval(pe,pb)>=0?"Overvalued":"Undervalued";
+			double d = ANN.eval(pe,pb);
+			System.out.println(d);
+			String v = d>1.0?"Overvalued":"Undervalued";
 			result.put("val", v);
 			writeJsonObject(response,result);
 		} catch (Exception e) {
@@ -158,7 +163,7 @@ class ANN{
 			res+=one*ann.getHiddenLayer().getNeurons().get(1).getInEdges().get(0).getWeight();
 			res+=one*ann.getHiddenLayer().getNeurons().get(2).getInEdges().get(0).getWeight();
 			res = calculateOutput(res);
-			//System.out.println(one+" "+two+" "+three+" "+res);
+			System.out.println(one+" "+two+" "+three+" "+res);
 			return res;
 			
 			

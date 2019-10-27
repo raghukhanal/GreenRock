@@ -44,8 +44,12 @@
 	      } else {
 	        console.warn('failed.');
 	      }
-	      //loadNearbyItems();
-	      money.placeholder=l * inputvalue.value;
+	      
+	      
+	      var num = l * inputvalue.value+inputvalue.value;
+//	      num = num + inputvalue.value;
+	      money.placeholder= num;
+	      CON
 	    }, function(err) {console.log(err);});
 	    
 	    
