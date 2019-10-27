@@ -50,6 +50,7 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String positions = request.getParameter("positions");
+		String date = request.getParameter("date");
 		
 		
 		int start = 0;
@@ -71,11 +72,11 @@ public class Search extends HttpServlet {
 		
 		str.add(positions.substring(start));
 		try {
-			//positions =  URLEncoder.encode(positions, "UTF-8");
-			JSONObject obj = api.readData(str);
+			//String date = "20190807";
+			JSONObject obj = api.readData(str,date);
 			writeJsonObject(response,obj);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -87,45 +88,39 @@ public class Search extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		String position = request.getParameter("position");
+		String date = "20190807";
 		//System.out.print(ANN.eval(2.4,1.0));
 		
+		List<String> str = new ArrayList<>();
+		str.add(position);
+		//JSONObject obj = api.readData(str,date);
 		
-		String position = request.getParameter("position");
+		try {
+			//String date = "20190807";
+			JSONObject object = api.readData(str,date);
+			double pe = object.getDouble("peRatio");
+			double pb = object.getDouble("pbRatio");
+			
+			JSONObject result = new JSONObject();
+			//{value:over/under}
+			String v = ANN.eval(pe,pb)>=0?"Overvalued":"Undervalued";
+			result.put("val", v);
+			writeJsonObject(response,result);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		
-//		String positions = request.getParameter("positions");
-//		
-//		
-//		int start = 0;
-//		int curr = 0;
-//		List<String> str = new ArrayList<>();
-////		for(String s:positions.split(" ")) {
-////			str.add(s);
-////		}
-//		while(curr<positions.length()) {
-//			char c = positions.charAt(curr);
-//			if(!Character.isDigit(c) && !Character.isLetter(c) && c!='~') {
-//				str.add(positions.substring(start,curr));
-//				curr++;
-//				start = curr;
-//			}else {
-//				curr++;
-//			}
-//		}
-//		
-//		str.add(positions.substring(start));
-//		try {
-//			//positions =  URLEncoder.encode(positions, "UTF-8");
-//			JSONObject obj = api.readData(str);
-//			writeJsonObject(response,obj);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		
+		
+
 	}
 	
 	public static void writeJsonObject(HttpServletResponse response, JSONObject obj) throws IOException {	
 		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.getWriter().print(obj);
 
 	}
@@ -163,7 +158,7 @@ class ANN{
 			res+=one*ann.getHiddenLayer().getNeurons().get(1).getInEdges().get(0).getWeight();
 			res+=one*ann.getHiddenLayer().getNeurons().get(2).getInEdges().get(0).getWeight();
 			res = calculateOutput(res);
-			System.out.println(one+" "+two+" "+three+" "+res);
+			//System.out.println(one+" "+two+" "+three+" "+res);
 			return res;
 			
 			
@@ -171,8 +166,7 @@ class ANN{
 		}
 		public static double calculateOutput(double netInput) {
 	        return 1.5 / (1+Math.exp(-netInput));
-			//return 3 / (1 + Math.exp(-2 * netInput)) - 1;
-			//return netInput;
+			
 	    }
 
 	

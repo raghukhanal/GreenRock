@@ -2,10 +2,10 @@
 	
 	
 	function init() {
-	    
+	    console.log(calculateMoney);
 	    document.querySelector('#submit').addEventListener('click', calculateMoney);
 	    
-	    //document.getElementById('#e1').addEventListener('click', calculateMoney);
+	    document.getElementById('e6').addEventListener('click', showeval);
 	   
 //	    document.querySelector('').addEventListener('click', loadFavoriteItems);
 //	    document.querySelector('').addEventListener('click', loadRecommendedItems);
@@ -14,41 +14,45 @@
 	
 	
 	function calculateMoney(){
-		showMessage('Calculating Results');
+		//showMessage('Calculating Results');
 		
 //		inputvalue
 
-		showMessage('Calculating Results');
+		//showMessage('Calculating Results');
 	    //input
 	    var inputvalue = document.getElementById("inputvalue");
 	    var positions = document.getElementById("positions");
 	    var date = document.getElementById("date");
 		// The request parameters
-	    var url = './search';
+	    
 	    var params = "positions="+positions;
 	    var data = null;
+	    
+	    console.log(positions.value);
+	    var url = "search?positions="+positions.value;//WORK~50,AAPL~10,SNAP~40";
+	    url+="&date="+date.value;
+	    //console.log('calculateMoney');
 
 	    
 	    //ajax
-	    ajax('POST', url, data, 
-	     function(res) {
-	    	console.log(res);
+	    ajax('GET', url, data, res => {
+	      console.log(res);
 	      var result = JSON.parse(res);
 	      if ('level' in result) {
 	        var l = result.level;
 	        
 	      } else {
-	        console.warn('Getting location by IP failed.');
+	        console.warn('failed.');
 	      }
 	      //loadNearbyItems();
-	      money.placeholder=l;
-	    });
+	      money.placeholder=l * inputvalue.value;
+	    }, function(err) {console.log(err);});
 	    
 	    
 	    //output
 	    var money = document.getElementById("displayProf");
 	   
-	    money.placeholder="hahahah";
+	    money.placeholder="calculating...";
 
 	}
 	
@@ -56,14 +60,34 @@
 		 var money = document.getElementById("displayProf");
 		   
 		 money.placeholder="Calculating...";
-	    //var itemList = document.querySelector('#item-list');
-//	    itemList.innerHTML = '<p class="notice"><i class="fa fa-spinner fa-spin"></i> ' +
-//	      msg + '</p>';
+
 		
 	}
 	
 	function showeval(){
-		window.alert("calcuate money");
+		var ticker = document.getElementById("ticker");
+		
+		var url = "search?position="+ticker.value+"~100";//WORK;
+		var data =null;
+		//var date = new Date();
+		url+="&date="+"20191027";
+		    
+		var calculate = document.getElementById("calculate");
+		ajax('POST', url, data, res => {
+		      console.log(res);
+		      var result = JSON.parse(res);
+		      if ('val' in result) {
+		        var l = result.val;
+		        
+			    calculate.innerHTML=l;
+		        
+		      } else {
+		        console.warn('failed.');
+		      }
+		      
+		    }, function(err) {console.log(err);});
+		
+		calculate.innerHTML="Evaluating...";
 	}
 
 	
@@ -85,6 +109,7 @@
 
 	    xhr.open(method, url, true);
 
+	    console.log('doh!');
 	    xhr.onload = function() {
 	      if (xhr.status === 200) {
 	        successCallback(xhr.responseText);

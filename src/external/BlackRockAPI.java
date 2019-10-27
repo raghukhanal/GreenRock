@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import java.io.*;
 
 public class BlackRockAPI {
-	public JSONObject readData(List<String> positions) throws Exception {// AAPL~50|WORK~50
+	public JSONObject readData(List<String> positions,String date) throws Exception {// AAPL~50|WORK~50
         //String urlString="https://www.blackrock.com/tools/hackathon/portfolio-analysis?calculateExposures=true&calculatePerfomance=true&calculateRisk=true&positions=" + a + "~" + b + "%7CWORK~10";
 		String urlString="https://www.blackrock.com/tools/hackathon/portfolio-analysis?calculateExposures=true&calculatePerfomance=true&calculateRisk=true&positions=";
 		//System.out.println(positions.size());
@@ -52,7 +52,7 @@ public class BlackRockAPI {
 
 
         JSONObject returnmap = returns.getJSONObject("returnsMap");
-        JSONObject userdate = returnmap.getJSONObject("20190807");
+        JSONObject userdate = returnmap.getJSONObject(date);
         double level = userdate.getDouble("level");
         
         returnType.put("peRatio", peRatio);
