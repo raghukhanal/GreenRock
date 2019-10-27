@@ -51,6 +51,7 @@ public class Search extends HttpServlet {
 		
 		String positions = request.getParameter("positions");
 		
+		
 		int start = 0;
 		int curr = 0;
 		List<String> str = new ArrayList<>();
@@ -84,7 +85,11 @@ public class Search extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		System.out.print(ANN.eval(2.4,1.0));
+		//System.out.print(ANN.eval(2.4,1.0));
+		
+		
+		String position = request.getParameter("position");
+		
 	}
 	
 	public static void writeJsonObject(HttpServletResponse response, JSONObject obj) throws IOException {	
