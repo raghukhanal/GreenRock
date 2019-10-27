@@ -41,8 +41,18 @@ public class BlackRockAPI {
         
         JSONArray PORTFOLIOS = resultMap.getJSONArray("PORTFOLIOS");
         JSONArray portfolios = PORTFOLIOS.getJSONObject(0).getJSONArray("portfolios");
-        JSONObject exposures = portfolios.getJSONObject(0).getJSONObject("returns");
-        JSONObject returnmap = exposures.getJSONObject("returnsMap");
+        JSONObject returns = portfolios.getJSONObject(0).getJSONObject("returns");
+        
+        //
+        JSONObject analyticsMap = portfolios.getJSONObject(0).getJSONObject("analyticsMap");
+        Double peRatio = analyticsMap.getJSONObject("peRatio").getDouble("value");
+        Double twelveMonthTrailingYield = analyticsMap.getJSONObject("twelveMonthTrailingYield").getDouble("value");
+        Double returnOnAssets= analyticsMap.getJSONObject("returnOnAssets").getDouble("value");
+        Double pbRatio = analyticsMap.getJSONObject("pbRatio").getDouble("value");
+        
+        
+        
+        JSONObject returnmap = returns.getJSONObject("returnsMap");
         JSONObject userdate = returnmap.getJSONObject("20190807");
         double level = userdate.getDouble("level");
         
@@ -50,7 +60,7 @@ public class BlackRockAPI {
         
         //System.err.print(d);
        
-        return returnmap;
+        return analyticsMap;
         
     }
 

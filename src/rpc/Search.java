@@ -37,7 +37,7 @@ public class Search extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     
-    //  http://localhost:8080/GreenRock/search?positions=AAPL~90WORK~10
+    //   http://localhost:8080/GreenRock/search?positions=WORK~50|AAPL~10|SNAP~40
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		

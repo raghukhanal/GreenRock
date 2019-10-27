@@ -217,7 +217,7 @@ public class ANNClient {
         Scanner in = new Scanner(System.in);
         System.out.print(
                 "Enter the PATH name of the weight file: ");
-        //   /Users/qinchen/csci205_hw_sp19/src/hw02/weight.csv
+       
         String path = in.next();
         File weight = new File(path);
         BufferedReader br = null;
@@ -311,7 +311,7 @@ public class ANNClient {
     /**
      * read inputs from user
      *
-     * @author Zoe Chen
+     * 
      */
     private static void readInput(NeuralNet ANN) throws FileNotFoundException, IOException {
 
@@ -329,7 +329,7 @@ public class ANNClient {
         System.out.print("enter the PATH of training data file： ");
 
         String name = in.next();
-        //  /Users/qinchen/csci205_hw_sp19/src/hw02/exampleAND.csv
+        //  
         File csv = new File(
                 name);
         BufferedReader br = null;
@@ -385,7 +385,7 @@ public class ANNClient {
     /**
      * write outputs to a file
      *
-     * @author Zoe Chen
+     * 
      */
     private static void writeOutputs(NeuralNet ANN) throws FileNotFoundException {
         PrintWriter out = null;
@@ -393,7 +393,7 @@ public class ANNClient {
         System.out.print(
                 "Enter the PATH name to store the results: ");
         String path = in.next();
-        //   /Users/qinchen/csci205_hw_sp19/src/hw02/output
+        //   /Users/qinchen/Codes/GreenRock/src/ann
         out = new PrintWriter(path
         );
         String writeFiles = "";
@@ -412,9 +412,7 @@ public class ANNClient {
             writeFiles += e.getName() + " : " + e.getTheta() + "\n";;
         }
 
-        writeFiles = writeFiles + "number of epoch: " + ANN.getEpoch() + "\n";
-        writeFiles += "time to complete training: " + ANN.getTime() + " seconds. \n";
-        writeFiles += "average sse over the entire training data: " + ANN.getTotalSSE() / ANN.getEpoch();
+        
         out.printf(writeFiles);
         out.close();
 
