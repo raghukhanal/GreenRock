@@ -9,6 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="main.css" />
     <noscript><link rel="stylesheet" href="noscript.css" /></noscript>
+    <script>
+        function getOption() {
+            var obj = document.getElementById("inputvalue");
+            document.getElementById("fillininput").innerHTML =
+                obj.value;
+        }
+    </script>
 </head>
 <body class="is-preload">
 
@@ -111,20 +118,29 @@
             </div>
         </section>
 
+
+
+
+
         <!-- Panel -->
         <section class="panel color1">
+<!--            <form action="invAmount.php">-->
+
             <div class="intro joined">
-                <h2 class="major">Inventment Amount <input type="text" name="inputvalue" id="inputvalue" value="" placeholder="Input $ here" /></h2>
-                <p>Use table in previous page to type the stock code of the company followed by the percentage Example: For 50 percent snapchat stock and 50 percent of apple type <STRONG>"SNAP~50|AAPL~50"</STRONG> </p>
+<!--                Use inputvalue and put it in fill-in-input-->
+                <h2 class="major">Investment Amount <input type="text" name="inputvalue" id="inputvalue" value="" placeholder="Input $ here" /></h2>
+                <p>Use table in previous page to type the stock code of the company followed by the percentage Example: For 50 percent snapchat
+                    stock and 50 percent of apple type <STRONG>"SNAP~50|AAPL~50"</STRONG> </p>
                 <div class="field third">
                     <h4>Stocks and Percentages</h4>
+
+<!--                    Save the stockslist to a text file-->
                     <input type="text" name="stockslist" id="stockslist" value="" placeholder="Input FORMATTED string"/>
                     <h1> </h1>
-                  	<span class="button primary color2">Submit</span>
+                    <input onclick="getOption()" class="button primary color2" value="Submit">
                 </div>
-               
-                
             </div>
+<!--            </form>-->
             <div class="inner">
 
                     <table>
@@ -137,7 +153,7 @@
                         <tbody>
                         <tr>
                             <td><strong>January 01, 2019: </strong></td>
-                            <td id="fillininput"> Fill in Inputted Amount </td>
+                            <td > <p id="fillininput">Fill in Inputted Amount </p></td>
                         </tr>
                         <tr>
 
@@ -149,7 +165,6 @@
                     </table>
             </div>
         </section>
-
 
 
         <section class="panel banner right">
