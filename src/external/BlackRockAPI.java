@@ -13,16 +13,13 @@ public class BlackRockAPI {
 		String urlString="https://www.blackrock.com/tools/hackathon/portfolio-analysis?calculateExposures=true&calculatePerfomance=true&calculateRisk=true&positions=";
 		//System.out.println(positions.size());
 		for(int i=0;i<positions.size()-1;i++) {
-        	
         	String s = positions.get(i);
         	//System.out.println(s);
         	urlString+=s+"%7C";
         }
         urlString+=positions.get(positions.size()-1);
         //System.out.println(positions.get(positions.size()-1));
-        
-        
-        
+
         URL url = new URL(urlString);
         URLConnection urlConnection = url.openConnection();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -49,19 +46,15 @@ public class BlackRockAPI {
         Double twelveMonthTrailingYield = analyticsMap.getJSONObject("twelveMonthTrailingYield").getDouble("value");
         Double returnOnAssets= analyticsMap.getJSONObject("returnOnAssets").getDouble("value");
         Double pbRatio = analyticsMap.getJSONObject("pbRatio").getDouble("value");
-        
-        
-        
+
+
         JSONObject returnmap = returns.getJSONObject("returnsMap");
         JSONObject userdate = returnmap.getJSONObject("20190807");
         double level = userdate.getDouble("level");
-        
-        
-        
+
         //System.err.print(d);
        
         return analyticsMap;
-        
     }
 
     public static void main(String[] args) throws Exception {
@@ -70,9 +63,6 @@ public class BlackRockAPI {
         //apiReader.readData("BLK~100");
     }
     private static void getInfo() {
-    	
     }
-    
-    
 
 }
