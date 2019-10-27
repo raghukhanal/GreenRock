@@ -1,8 +1,6 @@
 <!DOCTYPE HTML>
 <!--
-    Ethereal by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+    l
 -->
 <html>
 <head>
@@ -25,11 +23,7 @@
             <div class="content color0 span-3-75">
                 <h1 class="major">Welcome to <br />
                     GreenRock</h1>
-                <p><strong>This is <strong>GreenRock</strong>, our project extracts data from the<a href="https://html5up.net">
-                    Aladdin API</a>, and processes the financial data to help consumers make better financial decisions.
-                    We also incorporated an interactive and extremely accurate game using advanced ML models to predict
-                    future portfolio changes. Using the data, we also made a fun fact page, demonstrating the growth of
-                    your portfolio if you would have invested 10,000 dollars five years ago.</strong></p>
+                <p><strong>This is <strong>GreenRock</strong>, our project extracts data from the<a href="https://www.blackrock.com/tools/api-tester/hackathon"> Aladdin API</a>, and processes the financial data to help consumers make better financial decisions. We also incorporated an interactive and extrememly accurate game using advanced ML models to predict future portfolio changes. Using the data, we also made a fun fact page, demonstranting the growth of your portfolio if you would have invested 10,000 dollars five years ago.</strong></p>
                 <ul class="actions">
                     <li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
                 </ul>
@@ -43,15 +37,7 @@
         <section class="panel spotlight medium right" id="first">
             <div class="content span-7">
                 <h2 class="major">Our Project Overview</h2>
-                <p><strong>After extracting the data from the Aladdin Portfolio Analysis API. We realized that the
-                    data only had past data on the stocks of these companies. We generated a where you will be
-                    dropped in January 2019, where you can invest any amount of money to a variety of stocks,
-                    and our Machine Learning model can accurately calculate the worth of your portfolio on any
-                    certain day, all the way up to last week which is where the provided Aladdin API data ends.
-                    We also made a information slide showing the effects of investing in stock, this increases
-                    financial literacy because people can see the growth of portfolios over a time span encouraging
-                    people to invest reasonably. FINALLY, Using advanced neural networks, we were able to reasonably
-                    determine if a stock is overpriced or under-priced.</strong></p>
+                <p><strong>After extracting the data from the Aladdin Portfolio Analysis API. We realized that the data only had past data on the stocks of these companies. We generated a where you will be dropped in Janurary 2019, where you can invest any amount of money to a variety of stocks, and our Machine Learning model can accurately calculate the worth of your portfolio on any certain day, all the way up to last week which is where the provided Aladdin API data ends. We also made a information slide showing the effects of investing in stock, this increases financial literacy because people can see the growth of portfolios over a time span encouraging people to invest reasonably. FINALLY, Using advanced neural networks, we were able to reasonably determine if a stock is overpriced or underpriced.</strong></p>
             </div>
             <div class="image filtered tinted" data-position="top left">
                 <img src="images/pic02.jpg" alt="" />
@@ -128,76 +114,39 @@
         <!-- Panel -->
         <section class="panel color1">
             <div class="intro joined">
-
-
-                <h2 class="major">Inventment Amount <input type="text" name="demo-name1" id="demo-name1" value="" placeholder="Input $ here" /></h2>
-
-                <h2 class="major">Inventment Amount <input type="text" name="demo-name2" id="demo-name2" value="" placeholder="Input $ here" /></h2>
-
+                <h2 class="major">Inventment Amount <input type="text" name="inputvalue" id="inputvalue" value="" placeholder="Input $ here" /></h2>
+                <p>Use table in previous page to type the stock code of the company followed by the percentage Example: For 50 percent snapchat stock and 50 percent of apple type <STRONG>"SNAP~50|AAPL~50"</STRONG> </p>
                 <div class="field third">
-                    <label for="demo-category1">Stock 1</label>
-                    <div class="select-wrapper">
-                        <select name="demo-category1" id="demo-category1">
-                            <option value="">-</option>
-                            <option value="1">Apple</option>
-                            <option value="2">Amazon</option>
-                            <option value="3">BlackRock</option>
-                            <option value="4">Google</option>
-
-                        </select>
-                    </div>
+                    <h4>Stocks and Percentages</h4>
+                    <input type="text" name="stockslist" id="stockslist" value="" placeholder="Input FORMATTED string"/>
+                    <h1> </h1>
+                  	<span class="button primary color2">Submit</span>
                 </div>
-                <div class="field third">
-                    <label for="demo-category2">Stock 2</label>
-                    <div class="select-wrapper">
-                        <select name="demo-category2" id="demo-category2">
-                            <option value="">-</option>
-                            <option value="1">Apple</option>
-                            <option value="2">Amazon</option>
-                            <option value="3">BlackRock</option>
-                            <option value="4">Google</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field third">
-                    <label for="demo-category3">Stock 3</label>
-                    <div class="select-wrapper">
-                        <select name="demo-category3" id="demo-category3">
-                            <option value="">-</option>
-                            <option value="1">Apple</option>
-                            <option value="2">Amazon</option>
-                            <option value="3">BlackRock</option>
-                            <option value="4">Google</option>
-                        </select>
-                    </div>
-                </div>
+               
+                
             </div>
             <div class="inner">
-                <ul class="grid-icons three connected">
 
                     <table>
                         <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Outcome</th>
+                            <th><strong>Date</strong></th>
+                            <th><strong>Outcome</strong></s></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>January 01, 2019: </td>
-                            <td>$demoname</td>
+                            <td><strong>January 01, 2019: </strong></td>
+                            <td id="fillininput"> Fill in Inputted Amount </td>
                         </tr>
                         <tr>
 
-                            <td><input type="text" name="demo-name3" id="demo-name3" value="" placeholder="Enter future date here" /></td>
+                            <td><input type="text" name="demo-name" id="demo-name2" value="" placeholder="Enter future date here" /></td>
 
-                            <td><input type="text" name="demo-name4" id="demo-name4" value="" placeholder="Enter future date here" /></td>
-
-                            <td>$</td>
+                            <td><input type="text" name="demo-name" id="demo-name" value="" placeholder="Display Portfolio Amount" /></td>
                         </tr>
                         </tbody>
                     </table>
-                </ul>
             </div>
         </section>
 
